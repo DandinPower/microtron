@@ -12,3 +12,8 @@ Inspired by [picotron](https://github.com/huggingface/picotron) and [nanoGPT](ht
 * [ ] Benchmark, profile, and optimize code performance
 * [ ] Train a GPT-2 model from scratch using 3D parallelism with 8 GPUs
 * [ ] Compile the results into a technical blog using [Quarto](https://quarto.org/)
+
+## Acknowledgements
+
+1. [picotron](https://github.com/huggingface/picotron)
+2. [nanoGPT](https://github.com/karpathy/nanoGPT)
