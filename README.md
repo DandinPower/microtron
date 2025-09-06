@@ -5,7 +5,7 @@ Inspired by [picotron](https://github.com/huggingface/picotron) and [nanoGPT](ht
 ## Motivation
 
 In the [Reproduce GPT-2 project](https://www.youtube.com/watch?v=l8pRSuU81PU), we have already seen that, by using modern compute and datasets, it is possible to reproduce the GPT-2 model from scratch at a lower cost compared to the original OpenAI implementation. However, here is the new challenge. With the introduction of various architectural changes recently, the gpt-oss models now incorporate many modern techniques that improve efficiency, such as RMSNorm, sliding window attention, GQA, and MoE. This raises the question: Is it possible to achieve the same performance level as the GPT-2 model series, or even surpass it, at an even lower cost?
-This project aims to explore that possibility. I plan to initialize a smaller gpt-oss model with the following configuration: 12 layers, 8 experts, 4 active experts, hidden size of 1440, and intermediate size of 1440. The estimated model size is approximately 656M parameters, which is close to GPT-2 Large (812M).
+This project aims to explore that possibility. I plan to initialize a smaller gpt-oss model with the following configuration: 12 layers, 8 experts, 4 active experts, hidden size of 1024, and intermediate size of 1024. The model size is 827M parameters, which is close to GPT-2 Large (812M).
 By the end of the project, my goal is to outperform the GPT-2 Large model in terms of training cost and efficiency, while training the new model from scratch.
 
 
@@ -41,3 +41,4 @@ By the end of the project, my goal is to outperform the GPT-2 Large model in ter
 8. [gpt-oss-120b & gpt-oss-20b Model Card](https://arxiv.org/abs/2508.10925)
 9. [official openai gpt-oss implementation](https://github.com/openai/gpt-oss)
 10. [huggingface-transformers-gpt-oss-implementation](https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt_oss/modeling_gpt_oss.py)
+11. https://huggingface.co/unsloth/gpt-oss-20b-BF16

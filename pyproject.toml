@@ -5,6 +5,7 @@ description = "A clean, minimal, and education-oriented 3D parallel implementati
 readme = "README.md"
 requires-python = "==3.12.11"
 dependencies = [
+    "modal>=1.1.4",
     "numpy==2.3.2",
     "tiktoken==0.11.0",
     "torch==2.8.0",
