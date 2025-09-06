@@ -4,22 +4,26 @@ Inspired by [picotron](https://github.com/huggingface/picotron) and [nanoGPT](ht
 
 ## Motivation
 
-In the [Reproduce GPT-2 project](https://www.youtube.com/watch?v=l8pRSuU81PU), we have already seen that, by using modern compute and datasets, it is possible to reproduce the GPT-2 model from scratch at a lower cost compared to the original OpenAI implementation. However, here is the new challenge. With the introduction of various architectural changes recently, the gpt-oss models now incorporate many modern techniques that improve efficiency, such as RMSNorm, sliding window attention, GQA, and MoE. This raises the question: Is it possible to achieve the same performance level as the GPT-2 model series, or even surpass it, at an even lower cost?
-This project aims to explore that possibility. I plan to initialize a smaller gpt-oss model with the following configuration: 12 layers, 8 experts, 4 active experts, hidden size of 1024, and intermediate size of 1024. The model size is 827M parameters, which is close to GPT-2 Large (812M).
-By the end of the project, my goal is to outperform the GPT-2 Large model in terms of training cost and efficiency, while training the new model from scratch.
-
+In the [Reproduce GPT-2 project](https://www.youtube.com/watch?v=l8pRSuU81PU), we have already seen that, by using modern compute, it is possible to reproduce the GPT-2 model from scratch at a lower cost compared to the original OpenAI implementation. However, here is the new challenge. With the introduction of various architectural changes recently, the gpt-oss models now incorporate many modern techniques that improve efficiency, such as RMSNorm, sliding window attention, GQA, and MoE. This raises the question: Is it possible to achieve the same performance level as the GPT-2 model series, or even surpass it, at an even lower cost?
+This project aims to explore that possibility. I plan to initialize a smaller gpt-oss model with the following configuration: 20 layers, 4 experts, 1 active experts, hidden size of 512, and intermediate size of 512. The model size is 363M parameters, which is close to GPT-2 Medium (380M).
+By the end of the project, my goal is to outperform the GPT-2 Medium model in terms of training cost and efficiency, while training the new model from scratch.
 
 ## Roadmap
 
-* [ ] Follow the spirit of to implement clean and minimum gpt-oss model architecture from scratch by reference the huggingface and openai official implementation.
-* [ ] Implement the single GPU training workflow for pretraining, including the dataloader, monitoring (throughput, loss, val\_loss, MFU), optimizer, etc.
-* [ ] Extend to distributed data parallelism on 1-8 GPUs and try to reproduce the result.
+* [ ] Follow the spirit of nanoGPT to implement a clean and minimal GPT-OSS model architecture from scratch, referencing the official implementations from Hugging Face and OpenAI.
+* [ ] Implement a single-GPU training workflow for pretraining, including the dataloader, monitoring (throughput, loss, val\_loss, MFU), optimizer, and more.
+* [ ] Extend to distributed data parallelism on 1 to 8 GPUs and try to reproduce GPT-2 level results.
 * [ ] Extend to pipeline parallelism on 2 GPUs (pp = 2)
 * [ ] Extend to data parallelism on 4 GPUs (pp = 2, dp = 2)
 * [ ] Extend to tensor parallelism on 8 GPUs (pp = 2, dp = 2, tp = 2)
 * [ ] Benchmark, profile, and optimize code performance like using huggingface kernels, liger kernels
 * [ ] Train a small gpt-oss like model from scratch using 3D parallelism with 8 GPUs
 * [ ] Compile the results into a technical blog using [Quarto](https://quarto.org/)
+
+## Future Directions
+
+1. Try to follow the llm.c solution using pure C and CUDA with the modern FineWeb dataset from Hugging Face. It was able to reproduce GPT-2 (124M) in only 90 minutes for \$20 [Reproducing GPT-2 (124M) in llm.c in 90 minutes for \$20](https://github.com/karpathy/llm.c/discussions/481). I believe that by following this pure C solution, we might be able to achieve the same result at a lower cost, or possibly achieve higher performance at the same cost due to architectural advantages.
+2. Try to integrate context parallelism for long context training.
 
 ## Acknowledgements
 
